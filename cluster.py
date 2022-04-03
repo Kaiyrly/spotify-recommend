@@ -20,7 +20,7 @@ redirect_uri = 'https://www.google.com/'
 token = util.prompt_for_user_token(username, scope, client_id, client_secret, redirect_uri)
 
 sp = spotipy.Spotify(auth=token)
-song_data = pandas.read_csv('data.csv')
+song_data = pandas.read_csv('data/data.csv')
 headersCSV = ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
 for i in song_data:
     if i in headersCSV:
