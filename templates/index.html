@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Generator</title>
+</head>
+<body>
+    <h1>Playlist Generator</h1>
+    <form action="/generate_playlist" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <button type="submit">Generate Playlist</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const form = document.querySelector('form');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/generate_playlist', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+
+            if (data.playlist_id) {
+                resultDiv.textContent = `Playlist created with ID: ${data.playlist_id}`;
+            } else {
+                resultDiv.textContent = `Error: ${data.error}`;
+            }
+        });
+    </script>
+</body>
+</html>

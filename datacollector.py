@@ -1,16 +1,16 @@
-import sys 
+import sys
 import spotipy
 from csv import DictWriter
 import spotipy.util as util
 
-
+# Configuration
 username = sys.argv[1]
 scope = 'playlist-modify-private playlist-modify-public user-read-playback-state user-read-currently-playing user-read-private user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-follow-modify ugc-image-upload'
 client_id = '124ca109d7d5402b8ce9a4cbe366326b'
 client_secret = '27c3f19ade7a49c286613f1c8e4002d3'
 redirect_uri = 'https://www.google.com/'
 
-
+# Get Token
 token = util.prompt_for_user_token(username, scope, client_id, client_secret, redirect_uri)
 
 sp = spotipy.Spotify(auth=token)
